@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TeamFinder | Smart Student Collaboration</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="brand">
+        <div class="brand-logo">TF</div>
+
+        <div>
+            <h2>TeamFinder</h2>
+            <span>Build Together</span>
+        </div>
+    </div>
+
+    <nav>
+
+        <button class="nav-item active" onclick="showPage('dashboard', this)">
+            <span>⌂</span>
+            Dashboard
+        </button>
+
+        <button class="nav-item" onclick="showPage('discover', this)">
+            <span>⌕</span>
+            Discover Students
+        </button>
+
+        <button class="nav-item" onclick="showPage('messages', this)">
+            <span>✉</span>
+            Messages
+            <b id="messageBadge">2</b>
+        </button>
+
+        <button class="nav-item" onclick="showPage('hackathons', this)">
+            <span>⚡</span>
+            Hackathons
+        </button>
+
+        <button class="nav-item" onclick="showPage('team-builder', this)">
+            <span>✦</span>
+            AI Team Builder
+        </button>
+
+        <button class="nav-item" onclick="showPage('ideas', this)">
+            <span>◇</span>
+            Project Ideas
+        </button>
+
+        <button class="nav-item" onclick="showPage('team', this)">
+            <span>♟</span>
+            My Team
+        </button>
+
+        <button class="nav-item" onclick="showPage('profile', this)">
+            <span>◎</span>
+            My Profile
+        </button>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+
+        <div class="mini-user">
+            <div class="avatar">LY</div>
+
+            <div>
+                <strong>Lokesh</strong>
+                <small>Computer Science</small>
+            </div>
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+    <!-- HEADER -->
+
+    <header class="topbar">
+
+        <div class="mobile-brand">
+            <div class="brand-logo">TF</div>
+            <strong>TeamFinder</strong>
+        </div>
+
+        <div class="top-search">
+            <span>⌕</span>
+            <input
+                type="text"
+                id="globalSearch"
+                placeholder="Search students, skills, hackathons..."
+                onkeyup="globalSearch()"
+            >
+        </div>
+
+        <div class="top-actions">
+
+            <button class="icon-button" onclick="showNotifications()">
+                🔔
+                <i></i>
+            </button>
+
+            <div class="top-profile" onclick="showPage('profile')">
+                <div class="avatar small">LY</div>
+
+                <div>
+                    <strong>Lokesh</strong>
+                    <small>Student</small>
+                </div>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <section id="dashboard" class="page active-page">
+
+        <div class="welcome">
+
+            <div>
+
+                <span class="eyebrow">SMART COLLABORATION PLATFORM</span>
+
+                <h1>
+                    Build your
+                    <span>dream team.</span>
+                </h1>
+
+                <p>
+                    Find students with the right skills, discover hackathons
+                    and turn your ideas into successful projects.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <button class="primary-btn"
+                            onclick="showPage('discover')">
+                        Find Teammates →
+                    </button>
+
+                    <button class="secondary-btn"
+                            onclick="showPage('hackathons')">
+                        Explore Hackathons
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-orbit">
+
+                <div class="orbit-center">
+                    <span>TF</span>
+                </div>
+
+                <div class="orbit-item o1">💻</div>
+                <div class="orbit-item o2">🎨</div>
+                <div class="orbit-item o3">🤖</div>
+                <div class="orbit-item o4">📊</div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-icon blue">👥</div>
+                <div>
+                    <span>Students</span>
+                    <strong>2,480+</strong>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon purple">⚡</div>
+                <div>
+                    <span>Hackathons</span>
+                    <strong>86</strong>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon green">🏆</div>
+                <div>
+                    <span>Projects</span>
+                    <strong>1,240</strong>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon orange">🤝</div>
+                <div>
+                    <span>Teams Created</span>
+                    <strong>534</strong>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- DASHBOARD GRID -->
+
+        <div class="dashboard-grid">
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <span class="eyebrow">RECOMMENDED</span>
+                        <h2>Students you may need</h2>
+                    </div>
+
+                    <button class="text-button"
+                            onclick="showPage('discover')">
+                        View all →
+                    </button>
+
+                </div>
+
+                <div id="recommendedStudents" class="student-list"></div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <span class="eyebrow">UPCOMING</span>
+                        <h2>Hackathons</h2>
+                    </div>
+
+                    <button class="text-button"
+                            onclick="showPage('hackathons')">
+                        Explore →
+                    </button>
+
+                </div>
+
+                <div id="dashboardHackathons"></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= DISCOVER ================= -->
+
+    <section id="discover" class="page">
+
+        <div class="page-heading">
+
+            <div>
+                <span class="eyebrow">DISCOVER</span>
+                <h1>Find your teammates</h1>
+                <p>Search students based on skills, college and project roles.</p>
+            </div>
+
+            <button class="primary-btn" onclick="openProfileEditor()">
+                + Create Profile
+            </button>
+
+        </div>
+
+
+        <div class="filter-box">
+
+            <div class="search-large">
+                <span>⌕</span>
+                <input
+                    id="studentSearch"
+                    type="text"
+                    placeholder="Search by name, skill, college or role..."
+                    onkeyup="filterStudents()"
+                >
+            </div>
+
+            <select id="skillFilter" onchange="filterStudents()">
+                <option value="">All Skills</option>
+                <option>JavaScript</option>
+                <option>Python</option>
+                <option>Java</option>
+                <option>AI/ML</option>
+                <option>UI/UX</option>
+                <option>Cyber Security</option>
+                <option>Cloud</option>
+                <option>IoT</option>
+            </select>
+
+            <select id="roleFilter" onchange="filterStudents()">
+                <option value="">All Roles</option>
+                <option>Frontend Developer</option>
+                <option>Backend Developer</option>
+                <option>AI Engineer</option>
+                <option>UI/UX Designer</option>
+                <option>Data Scientist</option>
+                <option>Cyber Security</option>
+            </select>
+
+        </div>
+
+
+        <div class="section-title">
+            <h2>Recommended students</h2>
+            <span id="studentCount"></span>
+        </div>
+
+        <div id="studentGrid" class="student-grid"></div>
+
+    </section>
+
+
+    <!-- ================= MESSAGES ================= -->
+
+    <section id="messages" class="page">
+
+        <div class="page-heading">
+
+            <div>
+                <span class="eyebrow">COLLABORATION</span>
+                <h1>Messages</h1>
+                <p>Connect with students and discuss your project.</p>
+            </div>
+
+        </div>
+
+
+        <div class="messages-layout">
+
+            <div class="conversation-list">
+
+                <div class="message-search">
+                    <input
+                        id="messageSearch"
+                        placeholder="Search conversations..."
+                        onkeyup="filterConversations()"
+                    >
+                </div>
+
+                <div id="conversationList"></div>
+
+            </div>
+
+
+            <div class="chat-window">
+
+                <div class="chat-header">
+
+                    <div class="avatar">AR</div>
+
+                    <div>
+                        <strong id="chatName">Ananya Rao</strong>
+                        <span>● Online</span>
+                    </div>
+
+                </div>
+
+
+                <div id="chatMessages" class="chat-messages"></div>
+
+
+                <div class="message-input">
+
+                    <input
+                        id="chatInput"
+                        placeholder="Write a message..."
+                        onkeypress="handleChatKey(event)"
+                    >
+
+                    <button onclick="sendChatMessage()">
+                        ➤
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= HACKATHONS ================= -->
+
+    <section id="hackathons" class="page">
+
+        <div class="page-heading">
+
+            <div>
+
+                <span class="eyebrow">OPPORTUNITIES</span>
+
+                <h1>Hackathons near you</h1>
+
+                <p>
+                    Discover hackathons, problem statements and winning projects.
+                </p>
+
+            </div>
+
+            <button class="secondary-btn" onclick="findNearbyHackathons()">
+                📍 Find Near Me
+            </button>
+
+        </div>
+
+
+        <div class="location-banner" id="locationBanner">
+
+            <div class="location-icon">📍</div>
+
+            <div>
+                <strong>Location-based discovery</strong>
+                <p>
+                    Click "Find Near Me" to calculate approximate distance
+                    from your current browser location.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="hackathon-tabs">
+
+            <button class="tab active" onclick="filterHackathons('all', this)">
+                All
+            </button>
+
+            <button class="tab" onclick="filterHackathons('nearby', this)">
+                Nearby
+            </button>
+
+            <button class="tab" onclick="filterHackathons('online', this)">
+                Online
+            </button>
+
+            <button class="tab" onclick="filterHackathons('saved', this)">
+                Saved
+            </button>
+
+        </div>
+
+
+        <div id="hackathonGrid" class="hackathon-grid"></div>
+
+    </section>
+
+
+    <!-- ================= TEAM BUILDER ================= -->
+
+    <section id="team-builder" class="page">
+
+        <div class="page-heading">
+
+            <div>
+                <span class="eyebrow">AI POWERED</span>
+                <h1>Smart Team Builder</h1>
+
+                <p>
+                    Describe your project and TeamFinder will identify
+                    the recommended roles and skills.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="builder-layout">
+
+            <div class="panel builder-input">
+
+                <h2>Tell us about your project</h2>
+
+                <textarea
+                    id="projectDescription"
+                    placeholder="Example: We want to build an AI-powered system that detects road accidents using CCTV cameras and automatically alerts emergency services..."
+                ></textarea>
+
+                <div class="quick-projects">
+
+                    <button onclick="loadIdea('AI healthcare')">
+                        AI Healthcare
+                    </button>
+
+                    <button onclick="loadIdea('Smart city')">
+                        Smart City
+                    </button>
+
+                    <button onclick="loadIdea('Cyber security')">
+                        Cyber Security
+                    </button>
+
+                    <button onclick="loadIdea('Education')">
+                        EdTech
+                    </button>
+
+                </div>
+
+                <button class="primary-btn full"
+                        onclick="buildTeam()">
+                    ✦ Generate Team Requirements
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div id="teamResult" class="team-result">
+
+                    <div class="empty-state">
+
+                        <div>✦</div>
+
+                        <h2>AI Team Analysis</h2>
+
+                        <p>
+                            Enter a project idea to generate the recommended
+                            team structure.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= IDEAS ================= -->
+
+    <section id="ideas" class="page">
+
+        <div class="page-heading">
+
+            <div>
+
+                <span class="eyebrow">INNOVATION LAB</span>
+
+                <h1>Advanced Hackathon Ideas</h1>
+
+                <p>
+                    Explore project concepts that can become strong hackathon
+                    submissions.
+                </p>
+
+            </div>
+
+            <button class="primary-btn" onclick="generateRandomIdea()">
+                ✦ Surprise Me
+            </button>
+
+        </div>
+
+
+        <div class="idea-filters">
+
+            <button class="idea-filter active"
+                    onclick="filterIdeas('all', this)">
+                All
+            </button>
+
+            <button class="idea-filter"
+                    onclick="filterIdeas('AI', this)">
+                AI / ML
+            </button>
+
+            <button class="idea-filter"
+                    onclick="filterIdeas('Smart City', this)">
+                Smart City
+            </button>
+
+            <button class="idea-filter"
+                    onclick="filterIdeas('Cyber Security', this)">
+                Cyber Security
+            </button>
+
+            <button class="idea-filter"
+                    onclick="filterIdeas('Health', this)">
+                Health
+            </button>
+
+            <button class="idea-filter"
+                    onclick="filterIdeas('Environment', this)">
+                Environment
+            </button>
+
+        </div>
+
+
+        <div id="ideasGrid" class="ideas-grid"></div>
+
+    </section>
+
+
+    <!-- ================= MY TEAM ================= -->
+
+    <section id="team" class="page">
+
+        <div class="page-heading">
+
+            <div>
+
+                <span class="eyebrow">YOUR PROJECT</span>
+
+                <h1>My Team</h1>
+
+                <p>Manage your project team and identify skill gaps.</p>
+
+            </div>
+
+            <button class="primary-btn"
+                    onclick="runSkillGapAnalysis()">
+                📊 Analyze Skill Gap
+            </button>
+
+        </div>
+
+
+        <div class="team-overview">
+
+            <div class="team-card-main">
+
+                <div class="team-cover"></div>
+
+                <div class="team-info">
+
+                    <div class="team-logo">AI</div>
+
+                    <div>
+
+                        <h2>FutureTech</h2>
+
+                        <p>
+                            AI-powered Smart City Platform
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="team-skills">
+
+                    <span>Python</span>
+                    <span>AI/ML</span>
+                    <span>React</span>
+                    <span>IoT</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <span class="eyebrow">TEAM STATUS</span>
+
+                <h2>Skill coverage</h2>
+
+                <div class="progress-row">
+
+                    <div>
+                        <span>Technical</span>
+                        <strong>80%</strong>
+                    </div>
+
+                    <div class="progress">
+                        <i style="width:80%"></i>
+                    </div>
+
+                </div>
+
+                <div class="progress-row">
+
+                    <div>
+                        <span>Design</span>
+                        <strong>45%</strong>
+                    </div>
+
+                    <div class="progress">
+                        <i style="width:45%"></i>
+                    </div>
+
+                </div>
+
+                <div class="progress-row">
+
+                    <div>
+                        <span>Business</span>
+                        <strong>30%</strong>
+                    </div>
+
+                    <div class="progress">
+                        <i style="width:30%"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="section-title">
+
+            <h2>Team members</h2>
+
+        </div>
+
+        <div id="teamMembers" class="team-members"></div>
+
+
+        <div id="skillGapResult"></div>
+
+    </section>
+
+
+    <!-- ================= PROFILE ================= -->
+
+    <section id="profile" class="page">
+
+        <div class="page-heading">
+
+            <div>
+
+                <span class="eyebrow">YOUR IDENTITY</span>
+
+                <h1>My Profile</h1>
+
+                <p>Showcase your skills and find better opportunities.</p>
+
+            </div>
+
+            <button class="primary-btn"
+                    onclick="openProfileEditor()">
+                Edit Profile
+            </button>
+
+        </div>
+
+
+        <div class="profile-header-card">
+
+            <div class="profile-avatar">LY</div>
+
+            <div>
+
+                <h1>Lokesh Yandrapragada</h1>
+
+                <p>Computer Science Engineering Student</p>
+
+                <span>📍 Guntur, Andhra Pradesh</span>
+
+            </div>
+
+            <div class="profile-status">
+                ● Available for projects
+            </div>
+
+        </div>
+
+
+        <div class="profile-grid">
+
+            <div class="panel">
+
+                <span class="eyebrow">ABOUT</span>
+
+                <h2>About me</h2>
+
+                <p id="profileBio">
+                    Passionate student interested in software development,
+                    artificial intelligence and innovative technology projects.
+                </p>
+
+            </div>
+
+
+            <div class="panel">
+
+                <span class="eyebrow">SKILLS</span>
+
+                <h2>Technical Skills</h2>
+
+                <div class="skills-container">
+
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                    <span>Python</span>
+                    <span>AI/ML</span>
+                    <span>GitHub</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= PROFILE MODAL ================= -->
+
+<div id="profileModal" class="modal">
+
+    <div class="modal-box">
+
+        <button class="close-btn"
+                onclick="closeModal('profileModal')">
+            ×
+        </button>
+
+        <span class="eyebrow">PROFILE</span>
+
+        <h2>Create / Edit Profile</h2>
+
+        <input id="editName" placeholder="Full name">
+
+        <input id="editCollege" placeholder="College">
+
+        <input id="editRole" placeholder="Preferred role">
+
+        <input id="editSkills" placeholder="Skills separated by commas">
+
+        <textarea id="editBio"
+                  placeholder="Short bio"></textarea>
+
+        <button class="primary-btn full"
+                onclick="saveProfile()">
+            Save Profile
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MESSAGE MODAL ================= -->
+
+<div id="messageModal" class="modal">
+
+    <div class="modal-box">
+
+        <button class="close-btn"
+                onclick="closeModal('messageModal')">
+            ×
+        </button>
+
+        <div id="messageProfile"></div>
+
+        <textarea
+            id="initialMessage"
+            placeholder="Write your message..."></textarea>
+
+        <button class="primary-btn full"
+                onclick="sendInitialMessage()">
+            Send Message
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= HACKATHON MODAL ================= -->
+
+<div id="hackathonModal" class="modal">
+
+    <div class="modal-box large">
+
+        <button class="close-btn"
+                onclick="closeModal('hackathonModal')">
+            ×
+        </button>
+
+        <div id="hackathonDetails"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= NOTIFICATION ================= -->
+
+<div id="notificationPanel" class="notification-panel">
+
+    <div class="notification-header">
+        <strong>Notifications</strong>
+
+        <button onclick="hideNotifications()">×</button>
+    </div>
+
+    <div class="notification">
+        <span>🤝</span>
+        <div>
+            <strong>Ananya wants to join your project</strong>
+            <small>10 minutes ago</small>
+        </div>
+    </div>
+
+    <div class="notification">
+        <span>⚡</span>
+        <div>
+            <strong>New hackathon found near your location</strong>
+            <small>1 hour ago</small>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+
+<script src="script.js"></script>
+```html
+<!-- ================= TEAMFINDER AI CHATBOT ================= -->
+
+<!-- Floating chatbot button -->
+<button id="tf-chat-button" onclick="tfToggleChat()">
+    🤖
+</button>
+
+
+<!-- Chatbot window -->
+<div id="tf-chatbot">
+
+    <!-- Header -->
+    <div class="tf-chat-header">
+
+        <div>
+            <strong>🤖 TeamFinder Assistant</strong>
+
+            <span>
+                🟢 Online • Ready to help
+            </span>
+        </div>
+
+        <button onclick="tfToggleChat()">✕</button>
+
+    </div>
+
+
+    <!-- Messages -->
+    <div id="tf-chat-messages">
+
+        <div class="tf-message tf-bot">
+
+            👋 Hi! Welcome to <b>TeamFinder</b>!
+
+            <br><br>
+
+            I can help you with:
+
+            <br>👥 Finding teammates
+            <br>💻 Skills & roles
+            <br>🏆 Hackathons
+            <br>📋 Problem statements
+            <br>💡 Project ideas
+            <br>🧠 AI/ML questions
+            <br>📚 TeamFinder features
+
+            <br><br>
+
+            What would you like to know?
+
+        </div>
+
+    </div>
+
+
+    <!-- Quick questions -->
+    <div class="tf-quick-buttons">
+
+        <button onclick="tfQuick('How can I find a teammate?')">
+            👥 Find Teammate
+        </button>
+
+        <button onclick="tfQuick('What hackathons are available?')">
+            🏆 Hackathons
+        </button>
+
+        <button onclick="tfQuick('How does team matching work?')">
+            🔍 Matching
+        </button>
+
+        <button onclick="tfQuick('Give me a project idea')">
+            💡 Project Idea
+        </button>
+
+    </div>
+
+
+    <!-- Input -->
+    <div class="tf-input-area">
+
+        <input
+            type="text"
+            id="tf-user-input"
+            placeholder="Ask TeamFinder..."
+        >
+
+        <button onclick="tfSendMessage()">
+            ➤
+        </button>
+
+    </div>
+
+</div>
+```
+
+</body>
+</html>
